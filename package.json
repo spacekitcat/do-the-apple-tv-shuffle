@@ -13,7 +13,9 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "play-on-apple-tv": "^1.1.1"
+    "bonjour": "^3.5.0",
+    "play-on-apple-tv": "^1.1.1",
+    "recursive-readdir": "^2.2.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
