@@ -1,6 +1,6 @@
 import recursive from 'recursive-readdir';
-import isPlayableFileComparator from './isPlayableFileComparator';
+import isMP4FileExtComparator from './isMP4FileExtComparator';
 
 export default specifiedSearchPath => {
-  return recursive(specifiedSearchPath, [ isPlayableFileComparator ]);
+  return recursive(specifiedSearchPath, [ isMP4FileExtComparator ]);
 };
