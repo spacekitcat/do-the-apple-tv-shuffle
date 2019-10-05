@@ -1,9 +1,9 @@
 {
-  "name": "spacekitcat-nodejs-module-template",
+  "name": "do-the-apple-tv-shuffle",
   "version": "1.0.0",
-  "description": "spacekitcat-nodejs-module-template-description",
+  "description": "do-the-apple-tv-shuffle-description",
   "main": "lib/main.js",
-  "repository": "https://github.com/spacekitcat/spacekitcat-nodejs-module-template",
+  "repository": "https://github.com/spacekitcat/do-the-apple-tv-shuffle",
   "author": "Lisa \"Danger\" Burton",
   "license": "MIT",
   "scripts": {
@@ -12,7 +12,9 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
-  "dependencies": {},
+  "dependencies": {
+    "play-on-apple-tv": "^1.1.1"
+  },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
     "@babel/core": "^7.6.0",
