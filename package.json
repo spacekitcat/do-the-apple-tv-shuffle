@@ -1,0 +1,25 @@
+{
+  "name": "spacekitcat-nodejs-module-template",
+  "version": "1.0.0",
+  "description": "spacekitcat-nodejs-module-template-description",
+  "main": "lib/main.js",
+  "repository": "https://github.com/spacekitcat/spacekitcat-nodejs-module-template",
+  "author": "Lisa \"Danger\" Burton",
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "eslint src/**",
+    "build": "babel src -d lib",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.6.0",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.4.0",
+    "jest": "24.9"
+  }
+}
