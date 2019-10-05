@@ -1,5 +1,6 @@
-export default () => {
-  console.log('Bennie Harvey RIP');
+import recursive from 'recursive-readdir';
+import isPlayableFileComparator from './isPlayableFileComparator';
 
-  return null
+export default specifiedSearchPath => {
+  return recursive(specifiedSearchPath, [ isPlayableFileComparator ]);
 };
