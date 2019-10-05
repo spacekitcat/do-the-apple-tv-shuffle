@@ -1,16 +1,49 @@
-import placeholderModuleFunction from './findPlayableFiles';
-import bonjour from 'bonjour';
-import play from 'play-on-apple-tv';
+import findPlayableFiles from "./findPlayableFiles";
+import bonjour from "bonjour";
+import play from "play-on-apple-tv";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 
-bonjour().find({type: 'airplay'}, service => {
-    placeholderModuleFunction('/Users/spacekitcat/Movies').then(results => console.log(results));
-    const appleTvAddress = service.addresses[1];
-    console.log('Found a service: ', appleTvAddress);
-    const device = play('/Users/spacekitcat/Movies/video.mp4', appleTvAddress, (err) => {
-		if (err) console.log(err)
+const reducer = (state = 0, action) => {
+  switch (action.type) {
+    case "PLAY":
+      console.log("Play operation recieved.");
+      return ++state;
+    case "PLAYING":
+          console.log("Video now playing.");
+          return ++state;
+    default:
+      console.error("Unknown action.");
+      break;
+  }
+};
+
+const store = createStore(reducer, applyMiddleware(thunk));
+store.subscribe(() => console.log(store.getState()));
+store.dispatch({ type: "PLAY" });
+
+const sendPlayRequestToDevice = (filepath, appleTvAddress, errorHandler) => {
+  return play(filepath, appleTvAddress, errorHandler);
+};
+
+const createSendPlayRequestAction = (filepath, appleTvAddress) => {
+  return dispatch =>
+    sendPlayRequestToDevice(filepath, appleTvAddress, err => {
+      if (err) {
+        console.error(err);
+      }
+
+      return dispatch({ type: "PLAYING" });
     });
-    console.log(device);
-})
+};
 
-
-export default placeholderModuleFunction
+bonjour().find({ type: "airplay" }, service => {
+  findPlayableFiles("/Users/spacekitcat/Movies").then(results => {
+    const appleTvAddress = service.addresses[1];
+    console.log("Found a service: ", appleTvAddress);
+    store.dispatch(createSendPlayRequestAction(
+      results[Math.floor((results.length - 1) * Math.random())],
+      appleTvAddress
+    ));
+  });
+});

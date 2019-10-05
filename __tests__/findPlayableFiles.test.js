@@ -1,5 +1,5 @@
 import findPlayableFiles from '../src/findPlayableFiles';
-import isMP4FileExtComparator from '../src/isMP4FileExtComparator';
+import playableComparator from '../src/playableComparator';
 
 const recursive = require('recursive-readdir');
 jest.mock('recursive-readdir');
@@ -11,6 +11,6 @@ describe('The `findPlayableFiles` module', () => {
     const specifiedSearchPath = "/Users/burnindownthehouse";
 
     expect(findPlayableFiles(specifiedSearchPath)).toMatchObject(mockResults);
-    expect(recursive).toHaveBeenCalledWith(specifiedSearchPath, [ isMP4FileExtComparator ]);
+    expect(recursive).toHaveBeenCalledWith(specifiedSearchPath, [ playableComparator ]);
   });
 });
