@@ -16,9 +16,11 @@ const playNext = (mediaFolder, appleTvAddress) =>
     );
   });
 
-  console.log(process.argv[2]);
+
+
+console.log(process.argv[2]);
 if (!process.argv[2]) {
-  console.error('No media folder');
+  console.error('You must specify a media folder populated with AirPlay compatible MP4 files (i.e. node . <path-to-mp4-files>)');
   process.exit();
 }
 
@@ -27,9 +29,14 @@ bonjour().find({ type: "airplay" }, async service => {
   const appleTvAddress = service.addresses[1];
   console.log("Found a service: ", appleTvAddress);
   const device = await playNext(mediaFolder, appleTvAddress);
-  device.on("event", ev => {
-    if (ev.state === "stopped") {
-      playNext(mediaFolder, appleTvAddress);
+
+  const playDeviceEventHandler = async event => {
+    console.log(event);
+    if (event.state === "stopped") {
+      const device = await playNext(mediaFolder, appleTvAddress);
+      device.on('event', playDeviceEventHandler);
     }
-  });
+  }
+
+  device.on('event', playDeviceEventHandler);
 });
