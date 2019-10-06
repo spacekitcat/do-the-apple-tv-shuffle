@@ -15,9 +15,7 @@
   "dependencies": {
     "bonjour": "^3.5.0",
     "play-on-apple-tv": "^1.1.1",
-    "recursive-readdir": "^2.2.2",
-    "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0"
+    "recursive-readdir": "^2.2.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
