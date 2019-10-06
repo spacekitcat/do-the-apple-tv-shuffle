@@ -1,59 +1,52 @@
 # do-the-apple-tv-shuffle
 
-All right you boneheads, thank your lucky stars and get to your freakin' cars! We have a mass poisoning on our hands! Too many dead to assign specific cases, so all clients are FIRST COME FIRST SERVE! So, let's see some hustle out there!
-
-## Included config
-
-- Yarn (Packaging)
-- Babel (Transpiler)
-- Jest (Unit tests)
-- Eslintrc (Static analysis)
-- `.gitignore`
-- README template
-- Some test files
+A simple program that will scan a specified folder for MP4 files (x264 + AAC, AirPlay compatiable formats). It uses the `bonjour` and `play-on-apple-tv` NPM packages to do the heavy lifting.
 
 ## Build
 
-```bash
-$ yarn
-yarn install v1.13.0
-[1/4] 🔍  Resolving packages...
-[2/4] 🚚  Fetching packages...
-[3/4] 🔗  Linking dependencies...
-[4/4] 🔨  Building fresh packages...
-✨  Done in 116.68s.
-$ yarn build
-yarn run v1.13.0
+```console
+yarn run v1.19.0
 $ eslint src/**
 $ babel src -d lib
-Successfully compiled 2 files with Babel.
-✨  Done in 1.93s.
+Successfully compiled 4 files with Babel.
+✨  Done in 1.31s.
 ```
 
 ## Test
 
-```bash
-yarn run v1.13.0
+```console
+yarn run v1.19.0
 $ jest --coverage
- PASS  __tests__/placeholderModuleFunction.test.js
-------------------------------|----------|----------|----------|----------|-------------------|
-File                          |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
-------------------------------|----------|----------|----------|----------|-------------------|
-All files                     |      100 |      100 |      100 |      100 |                   |
- placeholderModuleFunction.js |      100 |      100 |      100 |      100 |                   |
-------------------------------|----------|----------|----------|----------|-------------------|
+ PASS  __tests__/playableComparator.test.js
+ PASS  __tests__/randomWrapper.test.js
+ PASS  __tests__/findPlayableFiles.test.js
+-----------------------|----------|----------|----------|----------|-------------------|
+File                   |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
+-----------------------|----------|----------|----------|----------|-------------------|
+All files              |      100 |      100 |      100 |      100 |                   |
+ findPlayableFiles.js  |      100 |      100 |      100 |      100 |                   |
+ playableComparator.js |      100 |      100 |      100 |      100 |                   |
+ randomWrapper.js      |      100 |      100 |      100 |      100 |                   |
+-----------------------|----------|----------|----------|----------|-------------------|
+
+Test Suites: 3 passed, 3 total
+Tests:       8 passed, 8 total
+Snapshots:   0 total
+Time:        2.765s
+Ran all test suites.
+✨  Done in 4.11s.
 ```
 
 ## Usage
 
-Once you have this package in the NPM repo, you'll be to install it with either Yarn or NPM and then require it like any other module. You can quickly test the validity of the module loader setup by going into the root directory for this project, resolving its dependencies with `yarn install`, building it with `yarn build` and by finally importing and calling it directly from the Node.js shell.
+You can check out and run the code like so:
 
-```bash
-$ node
-> const p = require('.');
-undefined
-> p.default();
-Bennie Harvey RIP
-null
+```console
+$ cd do-the-apple-tv-shuffle
+$ yarn build
+$ node . /Users/spacekitcat/Movies
+/Users/spacekitcat/Movies
+Found a service:  192.168.178.35
+Playing: /Users/spacekitcat/Movies/afilm.mp4
 ```
 
