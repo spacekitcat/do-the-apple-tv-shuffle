@@ -2,21 +2,25 @@ import bonjour from 'bonjour';
 import createPlayDeviceEventHandler from './createPlayDeviceEventHandler';
 import playNext from './playNext';
 
-const handleServiceLocatedEvent = async service => {
-  const appleTvAddress = service.addresses[1];
+export default (argv) => {
+  if (!argv[2]) {
+    console.error(
+      'You must specify a media folder populated with AirPlay compatible MP4 files (i.e. node . <path-to-mp4-files>)'
+    );
+    process.exit();
+  }
 
-  console.log('Found a service: ', appleTvAddress);
+  const mediaFolder = argv[2];
 
-  const device = await playNext(mediaFolder, appleTvAddress);
-  device.on('event', createPlayDeviceEventHandler(mediaFolder, appleTvAddress));
-};
+  const handleServiceLocatedEvent = async service => {
+    const appleTvAddress = service.addresses[1];
 
-if (!process.argv[2]) {
-  console.error(
-    'You must specify a media folder populated with AirPlay compatible MP4 files (i.e. node . <path-to-mp4-files>)'
-  );
-  process.exit();
+    console.log('Found a service: ', appleTvAddress);
+    console.log('Scanning: ', mediaFolder);
+
+    const device = await playNext(mediaFolder, appleTvAddress, () => {});
+    device.on('event', createPlayDeviceEventHandler(mediaFolder, appleTvAddress));
+  };
+
+  bonjour().find({ type: 'airplay' }, handleServiceLocatedEvent);
 }
-
-const mediaFolder = process.argv[2];
-bonjour().find({ type: 'airplay' }, handleServiceLocatedEvent);

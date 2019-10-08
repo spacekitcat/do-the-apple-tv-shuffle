@@ -2,12 +2,12 @@
   "name": "do-the-apple-tv-shuffle",
   "version": "1.0.0",
   "description": "do-the-apple-tv-shuffle-description",
-  "main": "lib/main.js",
+  "main": "lib/index.js",
   "repository": "https://github.com/spacekitcat/do-the-apple-tv-shuffle",
   "author": "Lisa \"Danger\" Burton",
   "license": "MIT",
   "scripts": {
-    "prebuild": "eslint src/**",
+    "pprebuild": "eslint src/**",
     "build": "babel src -d lib",
     "test": "jest --coverage",
     "test:watch": "jest --watch"

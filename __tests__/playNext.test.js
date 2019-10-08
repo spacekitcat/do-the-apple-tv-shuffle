@@ -31,7 +31,7 @@ describe("The `playNext` module", () => {
       expect(play).toHaveBeenCalledWith(
         `/my/films/a-file.mp4`,
         specifiedAppleTvAddress,
-        null
+        expect.any(Function)
       );
     });
   });
@@ -59,7 +59,7 @@ describe("The `playNext` module", () => {
       expect(play).toHaveBeenCalledWith(
         `/my/films/b-file.mp4`,
         specifiedAppleTvAddress,
-        null
+        expect.any(Function)
       );
     });
   });
@@ -87,7 +87,7 @@ describe("The `playNext` module", () => {
       expect(play).toHaveBeenCalledWith(
         `/my/films/a-file.mp4`,
         specifiedAppleTvAddress,
-        null
+        expect.any(Function)
       );
     });
   });
