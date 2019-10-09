@@ -18,8 +18,11 @@ export default (argv) => {
     console.log('Found a service: ', appleTvAddress);
     console.log('Scanning: ', mediaFolder);
 
-    const device = await playNext(mediaFolder, appleTvAddress, () => {});
-    device.on('event', createPlayDeviceEventHandler(mediaFolder, appleTvAddress));
+    const device = await playNext(mediaFolder, appleTvAddress, (error) => { console.log(error) });
+    device.on('event', (event) => {
+      console.log(event);
+      return createPlayDeviceEventHandler(mediaFolder, appleTvAddress)(event)
+    });
   };
 
   bonjour().find({ type: 'airplay' }, handleServiceLocatedEvent);

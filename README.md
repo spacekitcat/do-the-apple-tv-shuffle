@@ -3,7 +3,7 @@
 A simple program that will scan a specified folder for MP4 files (x264 + AAC, AirPlay compatiable formats). It uses the `bonjour` and `play-on-apple-tv` NPM packages to do the heavy lifting.
 
 
-I'd class this as a prototype, not quite at the right level for production level code. It's shown me *how* you would go about building a production ready solution.
+I'd class this as a prototype, not quite at the right level for production code. It's shown me *how* you would go about building a production ready solution.
 
 
 ## Build
