@@ -21,7 +21,6 @@ export default (argv) => {
 
     const device = await playNext(mediaFolder, appleTvAddress, (error) => { console.log(error) });
     device.on('event', (event) => {
-      console.log(event);
       return createPlayDeviceEventHandler(mediaFolder, appleTvAddress)(event)
     });
   };
