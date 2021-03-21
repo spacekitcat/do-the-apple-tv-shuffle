@@ -15,7 +15,7 @@
   "dependencies": {
     "bonjour": "^3.5.0",
     "fast-levenshtein": "^3.0.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "play-on-apple-tv": "^1.1.1",
     "recursive-readdir": "^2.2.2"
   },
