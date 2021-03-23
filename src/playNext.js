@@ -5,7 +5,7 @@ import _ from 'lodash';
 import levenshtein from 'fast-levenshtein';
 
 const playRandom = (mediaList, appleTvAddress) => {
-  const candidates = 3;
+  const candidates = 30;
   var highest = 0;
   var highestIndex = 0;
   for (var i=0; i<Math.min(candidates, mediaList.length); ++i)
